@@ -1,0 +1,22 @@
+name: lint check
+on: 
+  push:
+    paths:
+      - src/pages/*
+
+jobs:
+  eslint:
+    name: ESLint check
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout repo
+        uses: actions/checkout@v2
+      - name: setup node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+      - name: install package
+        run: yarn
+      - name: run eslint
+        run: yarn lint
+      
